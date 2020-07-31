@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/nav_aboutme"
         android:name="android.example.com.firstapp.ui.gallery.GalleryFragment"
-        android:label="AbotMe"
+        android:label="AboutMe"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
