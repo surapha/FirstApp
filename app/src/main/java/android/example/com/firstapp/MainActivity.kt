@@ -1,5 +1,9 @@
 package android.example.com.firstapp
 
+import android.app.Activity
+import android.content.Intent
+import android.example.com.firstapp.database.NewWordActivity
+import android.example.com.firstapp.database.Word
 import android.os.Bundle
 import android.view.Menu
 import android.support.design.widget.FloatingActionButton
@@ -13,6 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +40,24 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intentData)
+
+        if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
+            intentData?.let { data ->
+                val word = Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY))
+                wordViewModel.insert(word)
+                Unit
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                R.string.empty_not_saved,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+}
 
 
 
