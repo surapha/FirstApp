@@ -12,6 +12,7 @@ import android.widget.TextView
 class WordListAdapter internal constructor(
     context: Context
 ) : RecyclerView.Adapter<WordListAdapter.WordViewHolder>() {
+
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var words = emptyList<Word>() // Cached copy of words
 
